@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة الأصناف والفواتير</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- شاشة تسجيل الدخول -->
+<div id="login-screen">
+    <h1>تسجيل الدخول</h1>
+    <input type="text" id="username" placeholder="اسم المستخدم">
+    <input type="password" id="password" placeholder="كلمة المرور">
+    <button onclick="login()">دخول</button>
+    <div id="login-error" style="color:red; display:none;">اسم المستخدم أو كلمة المرور غير صحيحة!</div>
+</div>
+
+<!-- الشاشة الرئيسية -->
+<div id="main-screen" style="display:none;">
+    <h1>إدارة الأصناف والفواتير</h1>
+    <div id="admin-actions">
+        <button onclick="showAddItemForm()">إضافة صنف</button>
+        <button onclick="showAddInvoiceForm()">إضافة فاتورة</button>
+    </div>
+    
+    <button onclick="viewItems()">عرض الأصناف</button>
+    <button onclick="viewInvoices()">عرض الفواتير</button>
+    
+    <div id="items-list" style="display:none;">
+        <h2>قائمة الأصناف</h2>
+        <button onclick="printItems()">طباعة الأصناف</button>
+        <button onclick="deleteSelectedItems()">حذف المحدد</button>
+        <table id="items-table">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" onclick="selectAllItems()"></th>
+                    <th>اسم الصنف</th>
+                    <th>النوع</th>
+                    <th>السعر</th>
+                    <th>تاريخ الإنتاج</th>
+                    <th>تاريخ انتهاء الصلاحية</th>
+                    <th>حذف</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+    
+    <div id="invoices-list" style="display:none;">
+        <h2>قائمة الفواتير</h2>
+        <button onclick="printInvoices()">طباعة الفواتير</button>
+        <button onclick="deleteSelectedInvoices()">حذف المحدد</button>
+        <table id="invoices-table">
+            <thead>
+                <tr>
+                    <th><input type="checkbox" onclick="selectAllInvoices()"></th>
+                    <th>اسم الصنف</th>
+                    <th>النوع</th>
+                    <th>السعر</th>
+                    <th>الإجمالي</th>
+                    <th>حذف</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <!-- نموذج إضافة صنف -->
+    <div id="add-item-form" style="display:none;">
+        <h2>إضافة صنف جديد</h2>
+        <input type="text" id="item-name" placeholder="اسم الصنف">
+        <input type="text" id="item-type" placeholder="النوع">
+        <input type="number" id="item-price" placeholder="السعر">
+        <input type="date" id="item-production-date" placeholder="تاريخ الإنتاج">
+        <input type="date" id="item-expiry-date" placeholder="تاريخ انتهاء الصلاحية">
+        <button onclick="addItem()">إضافة</button>
+        <button onclick="cancelAddItem()">إلغاء</button>
+    </div>
+
+    <!-- نموذج إضافة فاتورة -->
+    <div id="add-invoice-form" style="display:none;">
+        <h2>إضافة فاتورة جديدة</h2>
+        <input type="text" id="invoice-item-name" placeholder="اسم الصنف">
+        <input type="text" id="invoice-item-type" placeholder="النوع">
+        <input type="number" id="invoice-price" placeholder="السعر">
+        <input type="number" id="invoice-counter" placeholder="الكمية">
+        <button onclick="addInvoice()">إضافة</button>
+        <button onclick="cancelAddInvoice()">إلغاء</button>
+    </div>
+
+    <footer>
+        <button onclick="logout()">تسجيل الخروج</button>
+    </footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
